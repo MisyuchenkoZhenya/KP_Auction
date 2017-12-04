@@ -10,12 +10,10 @@ namespace KP_Auction.Controllers
 {
     public class HomeController : Controller
     {
-        static string connectionString = WebConfigurationManager.ConnectionStrings["AdminConnection"].ConnectionString;
-        SqlConnection db = new SqlConnection(connectionString);
 
         public ActionResult Index()
         {
-            return Content(connectionString);//View();
+            return View();
         }
         
     }
