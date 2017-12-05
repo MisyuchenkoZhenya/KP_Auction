@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main page</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="btn-group">
+        <button class="btn btn-primary" onclick="location.href='@Url.Action("GetAll", "Auction")';return false;">Auctions</button>
+        <button class="btn btn-primary" onclick="location.href='@Url.Action("GetAll", "Auction")';return false;">Auctions</button>
+        <button class="btn btn-primary" onclick="location.href='@Url.Action("GetAll", "Auction")';return false;">Auctions</button>
+    </div>
+    @RenderBody()
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

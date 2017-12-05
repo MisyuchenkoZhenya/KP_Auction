@@ -7,5 +7,6 @@ namespace KP_Auction.Models
 {
     public class DealStateModel
     {
+
     }
 }
