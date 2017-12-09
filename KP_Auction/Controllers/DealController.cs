@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using KP_Auction.Models;
 using KP_Auction.Repositories;
 
 namespace KP_Auction.Controllers
 {
-    public class AuctionController : Controller
+    public class DealController : Controller
     {
-        // GET: Auction
+        // GET: Deal
         public ActionResult Index()
         {
             return RedirectToAction("GetAll");//View();
@@ -18,24 +17,24 @@ namespace KP_Auction.Controllers
 
         public ActionResult GetAll()
         {
-            AuctionRepository repository = new AuctionRepository();
+            DealRepository repository = new DealRepository();
             ModelState.Clear();
             return View(repository.GetAll());
         }
 
-        // GET: Auction/Details/5
+        // GET: Deal/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Auction/Create
+        // GET: Deal/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Auction/Create
+        // POST: Deal/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -43,7 +42,7 @@ namespace KP_Auction.Controllers
             {
                 // TODO: Add insert logic here
 
-                return View();
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -51,13 +50,13 @@ namespace KP_Auction.Controllers
             }
         }
 
-        // GET: Auction/Edit/5
+        // GET: Deal/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Auction/Edit/5
+        // POST: Deal/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -73,13 +72,13 @@ namespace KP_Auction.Controllers
             }
         }
 
-        // GET: Auction/Delete/5
+        // GET: Deal/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Auction/Delete/5
+        // POST: Deal/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

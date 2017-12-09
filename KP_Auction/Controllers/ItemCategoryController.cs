@@ -3,39 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using KP_Auction.Models;
-using KP_Auction.Repositories;
 
 namespace KP_Auction.Controllers
 {
-    public class AuctionController : Controller
+    public class ItemCategoryController : Controller
     {
-        // GET: Auction
+        // GET: ItemCategory
         public ActionResult Index()
         {
-            return RedirectToAction("GetAll");//View();
+            return View();
         }
 
-        public ActionResult GetAll()
-        {
-            AuctionRepository repository = new AuctionRepository();
-            ModelState.Clear();
-            return View(repository.GetAll());
-        }
-
-        // GET: Auction/Details/5
+        // GET: ItemCategory/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Auction/Create
+        // GET: ItemCategory/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Auction/Create
+        // POST: ItemCategory/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -43,7 +34,7 @@ namespace KP_Auction.Controllers
             {
                 // TODO: Add insert logic here
 
-                return View();
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -51,13 +42,13 @@ namespace KP_Auction.Controllers
             }
         }
 
-        // GET: Auction/Edit/5
+        // GET: ItemCategory/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Auction/Edit/5
+        // POST: ItemCategory/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -73,13 +64,13 @@ namespace KP_Auction.Controllers
             }
         }
 
-        // GET: Auction/Delete/5
+        // GET: ItemCategory/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Auction/Delete/5
+        // POST: ItemCategory/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

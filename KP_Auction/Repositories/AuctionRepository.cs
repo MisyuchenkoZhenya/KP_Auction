@@ -87,7 +87,7 @@ namespace KP_Auction.Repositories
 
                 SqlCommand com = new SqlCommand("DeleteAuction", db);
                 com.CommandType = CommandType.StoredProcedure;
-                com.Parameters.AddWithValue("@EmpId", Id);
+                com.Parameters.AddWithValue("@Id", Id);
 
                 if (com.ExecuteNonQuery() == -1)
                     return false;

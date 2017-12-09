@@ -11,8 +11,12 @@
 <body>
     <div class="btn-group">
         <button class="btn btn-primary" onclick="location.href='@Url.Action("GetAll", "Auction")';return false;">Auctions</button>
-        <button class="btn btn-primary" onclick="location.href='@Url.Action("GetAll", "Auction")';return false;">Auctions</button>
-        <button class="btn btn-primary" onclick="location.href='@Url.Action("GetAll", "Auction")';return false;">Auctions</button>
+        <button class="btn btn-primary" onclick="location.href='@Url.Action("GetAll", "Deal")';return false;">Deals</button>
+        <button class="btn btn-primary" onclick="location.href='@Url.Action("GetAll", "DealState")';return false;">DealStates</button>
+        <button class="btn btn-primary" onclick="location.href='@Url.Action("GetAll", "ItemCategory")';return false;">ItemCategories</button>
+        <button class="btn btn-primary" onclick="location.href='@Url.Action("GetAll", "Item")';return false;">Items</button>
+        <button class="btn btn-primary" onclick="location.href='@Url.Action("GetAll", "Participant")';return false;">Participants</button>
+        <button class="btn btn-primary" onclick="location.href='@Url.Action("GetAll", "TradingProgress")';return false;">TreadinProgresses</button>
     </div>
     @RenderBody()
 

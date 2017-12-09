@@ -8,6 +8,7 @@ namespace KP_Auction.Models
 {
     public class DealModel
     {
+        [Key]
         public int Id { get; set; }
 
         [Required]
@@ -31,6 +32,6 @@ namespace KP_Auction.Models
         public DateTime Time { get; set; }
 
         [Required]
-        public int Price { get; set; }
+        public decimal Price { get; set; }
     }
 }
