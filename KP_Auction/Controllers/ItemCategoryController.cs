@@ -32,7 +32,7 @@ namespace KP_Auction.Controllers
         // GET: ItemCategory/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new ItemCategoryModel());
         }
 
         // POST: ItemCategory/Create

@@ -36,8 +36,8 @@ namespace KP_Auction.Controllers
             ItemCategoryRepository repository = new ItemCategoryRepository();
             ItemViewModel viewModel = new ItemViewModel
             {
-                ItemCategories = repository.GetAll(),
-                ItemModel = new ItemModel()
+                Item = new ItemModel(),
+                ItemCategories = repository.GetAll()
             };
 
             return View(viewModel);
@@ -45,14 +45,14 @@ namespace KP_Auction.Controllers
 
         // POST: Item/Create
         [HttpPost]
-        public ActionResult Create(ItemModel ModelObject)
+        public ActionResult Create(ItemViewModel viewModel)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
                     ItemRepository repository = new ItemRepository();
-                    repository.Add(ModelObject);
+                    repository.Add(viewModel.Item);
                     return RedirectToAction("GetAll");
                 }
 

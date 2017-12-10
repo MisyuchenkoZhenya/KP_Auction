@@ -8,7 +8,7 @@ namespace KP_Auction.ViewModel
 {
     public class ItemViewModel
     {
-        public ItemModel ItemModel { get; set; }
+        public ItemModel Item { get; set; }
         public IEnumerable<ItemCategoryModel> ItemCategories { get; set; }
     }
 }

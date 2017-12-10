@@ -33,7 +33,7 @@ namespace KP_Auction.Controllers
         // GET: Auction/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new AuctionModel());
         }
 
         // POST: Auction/Create
