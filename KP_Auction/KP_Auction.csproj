@@ -207,6 +207,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_AdminPage.cshtml" />
     <Content Include="Views\Auction\GetAll.cshtml" />
+    <Content Include="Views\Auction\Edit.cshtml" />
     <Content Include="Views\Auction\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>

@@ -37,11 +37,16 @@ namespace KP_Auction.Controllers
 
         // POST: Auction/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(AuctionModel ModelObject)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    AuctionRepository repository = new AuctionRepository();
+                    repository.Add(ModelObject);
+                    return RedirectToAction("GetAll");
+                }
 
                 return View();
             }
@@ -54,18 +59,21 @@ namespace KP_Auction.Controllers
         // GET: Auction/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            AuctionRepository repository = new AuctionRepository();
+
+            return View(repository.GetById(id));
         }
 
         // POST: Auction/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, AuctionModel ModelObject)
         {
             try
             {
-                // TODO: Add update logic here
+                AuctionRepository repository = new AuctionRepository();
+                repository.Update(ModelObject);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("GetAll");
             }
             catch
             {
@@ -76,7 +84,17 @@ namespace KP_Auction.Controllers
         // GET: Auction/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            try
+            {
+                AuctionRepository repository = new AuctionRepository();
+                repository.Delete(id);
+
+                return RedirectToAction("GetAll");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // POST: Auction/Delete/5

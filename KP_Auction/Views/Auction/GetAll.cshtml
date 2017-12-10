@@ -3,8 +3,9 @@
 }
 @model IEnumerable<KP_Auction.Models.AuctionModel>
 
+<center><h1>Auctions</h1></center>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", "Auction", null, new { @class = "btn btn-primary" })
 </p>
 <table class="table">
     <tr>

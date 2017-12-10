@@ -15,7 +15,7 @@ namespace KP_Auction.Models
 
         [Required]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 
         [Required]
@@ -28,6 +28,6 @@ namespace KP_Auction.Models
         [DisplayFormat(DataFormatString = "{0:HH.mm}", ApplyFormatInEditMode = true)]
         public DateTime EndTime { get; set; }
 
-        public int Income { get; set; }
+        public decimal Income { get; set; }
     }
 }

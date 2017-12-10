@@ -8,11 +8,14 @@ namespace KP_Auction.Models
 {
     public class ItemModel
     {
+        [Key]
         public int Id { get; set; }
 
         [Required]
         public string Name { get; set; }
 
+        [Required]
+        [MaxLength(256, ErrorMessage = "Length can not exceed 256 characters")]
         public string Description { get; set; }
 
         public int Category_Id { get; set; }

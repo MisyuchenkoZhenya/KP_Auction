@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Web.Configuration;
 using KP_Auction.Models;
 using System.Data;
+using System.Globalization;
 
 namespace KP_Auction.Repositories
 {
@@ -37,25 +38,50 @@ namespace KP_Auction.Repositories
             {
                 db.Open();
 
-                List<AuctionModel> ModelObjects = new List<AuctionModel>();
-
                 SqlCommand com = new SqlCommand("GetAuctions", db);
                 com.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter da = new SqlDataAdapter(com);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
+               
+                return FillTable(dt);
+            }
+        }
 
-                foreach (DataRow dr in dt.Rows)
+        private List<AuctionModel> FillTable(DataTable dt)
+        {
+            List<AuctionModel> ModelObjects = new List<AuctionModel>();
+            foreach (DataRow dr in dt.Rows)
+            {
+                ModelObjects.Add(new AuctionModel
                 {
-                    ModelObjects.Add(new AuctionModel {
-                        Id = Convert.ToInt32(dr["Id"]),
-                        Date = Convert.ToDateTime(dr["Date"]),
-                        StartTime = Convert.ToDateTime(dr["StartTime"]),
-                        EndTime = Convert.ToDateTime(dr["EndTime"]),
-                        Income = Convert.ToInt32(dr["Income"])
-                    });
-                }
-                return ModelObjects;
+                    Id = Convert.ToInt32(dr["Id"]),
+                    Date = Convert.ToDateTime(dr["Date"]),
+                    StartTime = DateTime.ParseExact(Convert.ToString((dr["StartTime"])), "HH:mm:ss", CultureInfo.InvariantCulture),
+                    EndTime = DateTime.ParseExact(Convert.ToString((dr["EndTime"])), "HH:mm:ss", CultureInfo.InvariantCulture),
+                    Income = Convert.ToInt32(dr["Income"])
+                });
+            }
+            return ModelObjects;
+        }
+
+        public AuctionModel GetById(int id)
+        {
+            using(SqlConnection db = SQLConnector.Connect())
+            {
+                db.Open();
+
+                AuctionModel ModelObject = new AuctionModel();
+
+                SqlCommand com = new SqlCommand("GetAuctionById", db);
+                com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.AddWithValue("@Id", id);
+                com.ExecuteNonQuery();
+                SqlDataAdapter da = new SqlDataAdapter(com);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                return FillTable(dt)[0];
             }
         }
         
