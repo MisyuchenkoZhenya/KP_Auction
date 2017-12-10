@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using KP_Auction.Models;
+using KP_Auction.Repositories;
 
 namespace KP_Auction.Controllers
 {
@@ -11,7 +13,14 @@ namespace KP_Auction.Controllers
         // GET: ItemCategory
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("GetAll");
+        }
+
+        public ActionResult GetAll()
+        {
+            ItemCategoryRepository repository = new ItemCategoryRepository();
+            ModelState.Clear();
+            return View(repository.GetAll());
         }
 
         // GET: ItemCategory/Details/5
@@ -28,11 +37,16 @@ namespace KP_Auction.Controllers
 
         // POST: ItemCategory/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(ItemCategoryModel ModelObject)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    ItemCategoryRepository repository = new ItemCategoryRepository();
+                    repository.Add(ModelObject);
+                    return RedirectToAction("GetAll");
+                }
 
                 return RedirectToAction("Index");
             }
@@ -45,18 +59,21 @@ namespace KP_Auction.Controllers
         // GET: ItemCategory/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            ItemCategoryRepository repository = new ItemCategoryRepository();
+
+            return View(repository.GetById(id));
         }
 
         // POST: ItemCategory/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, ItemCategoryModel ModelObject)
         {
             try
             {
-                // TODO: Add update logic here
+                ItemCategoryRepository repository = new ItemCategoryRepository();
+                repository.Update(ModelObject);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("GetAll");
             }
             catch
             {
@@ -67,7 +84,17 @@ namespace KP_Auction.Controllers
         // GET: ItemCategory/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            try
+            {
+                ItemCategoryRepository repository = new ItemCategoryRepository();
+                repository.Delete(id);
+
+                return RedirectToAction("GetAll");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // POST: ItemCategory/Delete/5

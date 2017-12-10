@@ -169,6 +169,7 @@
     <Compile Include="Repositories\ParticipantRepository.cs" />
     <Compile Include="Repositories\SQLConnector.cs" />
     <Compile Include="Repositories\TradingPragressRepository.cs" />
+    <Compile Include="ViewModel\ItemViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -209,13 +210,17 @@
     <Content Include="Views\Auction\GetAll.cshtml" />
     <Content Include="Views\Auction\Edit.cshtml" />
     <Content Include="Views\Auction\Create.cshtml" />
+    <Content Include="Views\ItemCategory\GetAll.cshtml" />
+    <Content Include="Views\ItemCategory\Create.cshtml" />
+    <Content Include="Views\ItemCategory\Edit.cshtml" />
+    <Content Include="Views\Item\GetAll.cshtml" />
+    <Content Include="Views\Item\Create.cshtml" />
+    <Content Include="Views\Item\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\DealState\" />
     <Folder Include="Views\Deal\" />
-    <Folder Include="Views\ItemCategory\" />
-    <Folder Include="Views\Item\" />
     <Folder Include="Views\Participant\" />
     <Folder Include="Views\TreadingProgress\" />
   </ItemGroup>
