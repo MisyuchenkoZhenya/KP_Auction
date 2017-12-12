@@ -48,7 +48,7 @@ namespace KP_Auction.Controllers
                     return RedirectToAction("GetAll");
                 }
 
-                return RedirectToAction("Index");
+                return View();
             }
             catch
             {

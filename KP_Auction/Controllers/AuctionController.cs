@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using KP_Auction.Models;
 using KP_Auction.Repositories;
-using KP_Auction.ViewModel;
 
 namespace KP_Auction.Controllers
 {

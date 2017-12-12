@@ -1,0 +1,67 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminPage.cshtml";
+}
+@model IEnumerable<KP_Auction.Models.DealModel>
+
+<center><h1>Deals</h1></center>
+<p>
+    @Html.ActionLink("Create New", "Create", "Deal", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Buyer_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Seller_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Item_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Auction_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DealState_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Buyer_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Seller_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Item_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Auction_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DealState_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

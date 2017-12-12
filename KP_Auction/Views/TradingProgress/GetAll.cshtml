@@ -1,0 +1,49 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminPage.cshtml";
+}
+@model IEnumerable<KP_Auction.Models.TradingProgressModel>
+
+<center><h1>Trading progress</h1></center>
+<p>
+    @Html.ActionLink("Create New", "Create", "TradingProgress", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Deal_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Byer_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StepTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StepRate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deal_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Byer_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StepTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StepRate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

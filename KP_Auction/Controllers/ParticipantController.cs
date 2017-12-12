@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using KP_Auction.Models;
+using KP_Auction.Repositories;
 
 namespace KP_Auction.Controllers
 {
@@ -11,7 +13,14 @@ namespace KP_Auction.Controllers
         // GET: Participant
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("GetAll");
+        }
+
+        public ActionResult GetAll()
+        {
+            ParticipantRepository repository = new ParticipantRepository();
+            ModelState.Clear();
+            return View(repository.GetAll());
         }
 
         // GET: Participant/Details/5
@@ -23,18 +32,23 @@ namespace KP_Auction.Controllers
         // GET: Participant/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new ParticipantModel());
         }
 
         // POST: Participant/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(ParticipantModel ModelObject)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    ParticipantRepository repository = new ParticipantRepository();
+                    repository.Add(ModelObject);
+                    return RedirectToAction("GetAll");
+                }
 
-                return RedirectToAction("Index");
+                return View();
             }
             catch
             {
@@ -45,18 +59,21 @@ namespace KP_Auction.Controllers
         // GET: Participant/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            ParticipantRepository repository = new ParticipantRepository();
+
+            return View(repository.GetById(id));
         }
 
         // POST: Participant/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, ParticipantModel ModelObject)
         {
             try
             {
-                // TODO: Add update logic here
+                ParticipantRepository repository = new ParticipantRepository();
+                repository.Update(ModelObject);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("GetAll");
             }
             catch
             {
@@ -67,7 +84,17 @@ namespace KP_Auction.Controllers
         // GET: Participant/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            try
+            {
+                ParticipantRepository repository = new ParticipantRepository();
+                repository.Delete(id);
+
+                return RedirectToAction("GetAll");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // POST: Participant/Delete/5

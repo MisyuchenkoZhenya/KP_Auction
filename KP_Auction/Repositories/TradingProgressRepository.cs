@@ -11,7 +11,7 @@ using System.Globalization;
 
 namespace KP_Auction.Repositories
 {
-    public class TradingPragressRepository
+    public class TradingProgressRepository
     {
         public bool Add(TradingProgressModel obj)
         {

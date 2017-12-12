@@ -31,14 +31,8 @@ namespace KP_Auction.Controllers
 
         // GET: Item/Create
         public ActionResult Create()
-        { 
-            ItemCategoryRepository repository = new ItemCategoryRepository();
-            ItemModel model = new ItemModel
-            {
-                ItemCategories = repository.GetAll()
-            };
-
-            return View(model);
+        {
+            return View(new ItemModel());
         }
 
         // POST: Item/Create

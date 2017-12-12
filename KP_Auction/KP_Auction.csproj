@@ -168,7 +168,7 @@
     <Compile Include="Repositories\ItemRepository.cs" />
     <Compile Include="Repositories\ParticipantRepository.cs" />
     <Compile Include="Repositories\SQLConnector.cs" />
-    <Compile Include="Repositories\TradingPragressRepository.cs" />
+    <Compile Include="Repositories\TradingProgressRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -219,14 +219,22 @@
     <Content Include="Views\Item\GetAll.cshtml" />
     <Content Include="Views\Item\Create.cshtml" />
     <Content Include="Views\Item\Edit.cshtml" />
+    <Content Include="Views\Deal\GetAll.cshtml" />
+    <Content Include="Views\Deal\Create.cshtml" />
+    <Content Include="Views\Deal\Edit.cshtml" />
+    <Content Include="Views\DealState\GetAll.cshtml" />
+    <Content Include="Views\DealState\Create.cshtml" />
+    <Content Include="Views\DealState\Edit.cshtml" />
+    <Content Include="Views\Participant\GetAll.cshtml" />
+    <Content Include="Views\Participant\Create.cshtml" />
+    <Content Include="Views\Participant\Edit.cshtml" />
+    <Content Include="Views\TradingProgress\GetAll.cshtml" />
+    <Content Include="Views\TradingProgress\Create.cshtml" />
+    <Content Include="Views\TradingProgress\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="ViewModel\" />
-    <Folder Include="Views\DealState\" />
-    <Folder Include="Views\Deal\" />
-    <Folder Include="Views\Participant\" />
-    <Folder Include="Views\TreadingProgress\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

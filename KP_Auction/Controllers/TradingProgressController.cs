@@ -3,38 +3,61 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using KP_Auction.Models;
+using KP_Auction.Repositories;
 
 namespace KP_Auction.Controllers
 {
     public class TradingProgressController : Controller
     {
-        // GET: TreadingProgress
+        // GET: TradingProgress
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("GetAll");
         }
 
-        // GET: TreadingProgress/Details/5
+        public ActionResult GetAll()
+        {
+            TradingProgressRepository repository = new TradingProgressRepository();
+            ModelState.Clear();
+            return View(repository.GetAll());
+        }
+
+        // GET: TradingProgress/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: TreadingProgress/Create
+        // GET: TradingProgress/Create
         public ActionResult Create()
         {
-            return View();
+            ParticipantRepository participantRep = new ParticipantRepository();
+            DealRepository dealRep = new DealRepository();
+
+            TradingProgressModel model = new TradingProgressModel
+            {
+                Buyers = participantRep.GetAll(),
+                Deals = dealRep.GetAll()
+            };
+
+            return View(model);
         }
 
-        // POST: TreadingProgress/Create
+        // POST: TradingProgress/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(TradingProgressModel ModelObject)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    TradingProgressRepository repository = new TradingProgressRepository();
+                    repository.Add(ModelObject);
+                    return RedirectToAction("GetAll");
+                }
 
-                return RedirectToAction("Index");
+                return View();
             }
             catch
             {
@@ -42,21 +65,24 @@ namespace KP_Auction.Controllers
             }
         }
 
-        // GET: TreadingProgress/Edit/5
+        // GET: TradingProgress/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            TradingProgressRepository repository = new TradingProgressRepository();
+
+            return View(repository.GetById(id));
         }
 
-        // POST: TreadingProgress/Edit/5
+        // POST: TradingProgress/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, TradingProgressModel ModelObject)
         {
             try
             {
-                // TODO: Add update logic here
+                TradingProgressRepository repository = new TradingProgressRepository();
+                repository.Update(ModelObject);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("GetAll");
             }
             catch
             {
@@ -64,13 +90,23 @@ namespace KP_Auction.Controllers
             }
         }
 
-        // GET: TreadingProgress/Delete/5
+        // GET: TradingProgress/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            try
+            {
+                TradingProgressRepository repository = new TradingProgressRepository();
+                repository.Delete(id);
+
+                return RedirectToAction("GetAll");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
-        // POST: TreadingProgress/Delete/5
+        // POST: TradingProgress/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

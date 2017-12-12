@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using KP_Auction.Models;
+using KP_Auction.Repositories;
 
 namespace KP_Auction.Controllers
 {
@@ -11,7 +13,14 @@ namespace KP_Auction.Controllers
         // GET: DealState
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("GetAll");
+        }
+
+        public ActionResult GetAll()
+        {
+            DealStateRepository repository = new DealStateRepository();
+            ModelState.Clear();
+            return View(repository.GetAll());
         }
 
         // GET: DealState/Details/5
@@ -23,18 +32,23 @@ namespace KP_Auction.Controllers
         // GET: DealState/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new DealStateModel());
         }
 
         // POST: DealState/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(DealStateModel ModelObject)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    DealStateRepository repository = new DealStateRepository();
+                    repository.Add(ModelObject);
+                    return RedirectToAction("GetAll");
+                }
 
-                return RedirectToAction("Index");
+                return View();
             }
             catch
             {
@@ -45,18 +59,21 @@ namespace KP_Auction.Controllers
         // GET: DealState/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            DealStateRepository repository = new DealStateRepository();
+
+            return View(repository.GetById(id));
         }
 
         // POST: DealState/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, DealStateModel ModelObject)
         {
             try
             {
-                // TODO: Add update logic here
+                DealStateRepository repository = new DealStateRepository();
+                repository.Update(ModelObject);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("GetAll");
             }
             catch
             {
@@ -67,7 +84,17 @@ namespace KP_Auction.Controllers
         // GET: DealState/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            try
+            {
+                DealStateRepository repository = new DealStateRepository();
+                repository.Delete(id);
+
+                return RedirectToAction("GetAll");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // POST: DealState/Delete/5
