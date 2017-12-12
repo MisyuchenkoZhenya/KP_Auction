@@ -169,7 +169,6 @@
     <Compile Include="Repositories\ParticipantRepository.cs" />
     <Compile Include="Repositories\SQLConnector.cs" />
     <Compile Include="Repositories\TradingPragressRepository.cs" />
-    <Compile Include="ViewModel\ItemViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -223,6 +222,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ViewModel\" />
     <Folder Include="Views\DealState\" />
     <Folder Include="Views\Deal\" />
     <Folder Include="Views\Participant\" />
