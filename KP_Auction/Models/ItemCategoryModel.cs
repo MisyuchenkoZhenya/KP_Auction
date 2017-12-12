@@ -12,7 +12,7 @@ namespace KP_Auction.Models
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(32, ErrorMessage = "Length can not exceed 32 characters")]
+        [StringLength(50, ErrorMessage = "Length can not exceed 50 characters")]
         public string Category { get; set; }
     }
 }

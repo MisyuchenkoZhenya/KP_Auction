@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace KP_Auction.Controllers
 {
-    public class TreadingProgressController : Controller
+    public class TradingProgressController : Controller
     {
         // GET: TreadingProgress
         public ActionResult Index()

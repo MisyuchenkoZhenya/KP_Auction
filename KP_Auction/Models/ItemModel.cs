@@ -13,10 +13,11 @@ namespace KP_Auction.Models
         public int Id { get; set; }
 
         [Required]
+        [StringLength(50, ErrorMessage = "Length can not exceed 50 characters")]
         public string Name { get; set; }
 
         [Required]
-        [MaxLength(256, ErrorMessage = "Length can not exceed 256 characters")]
+        [StringLength(256, ErrorMessage = "Length can not exceed 256 characters")]
         public string Description { get; set; }
 
         [Display(Name = "Category")]
@@ -27,5 +28,8 @@ namespace KP_Auction.Models
 
         [Required]
         public decimal PriceGrowth { get; set; }
+
+        [ForeignKey("Category_Id")]
+        public IEnumerable<ItemCategoryModel> ItemCategories { get; set; }
     }
 }

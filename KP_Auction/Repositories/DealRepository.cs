@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Web.Configuration;
 using KP_Auction.Models;
 using System.Data;
+using System.Globalization;
 
 namespace KP_Auction.Repositories
 {
@@ -40,45 +41,72 @@ namespace KP_Auction.Repositories
             {
                 db.Open();
 
-                List<DealModel> ModelObjects = new List<DealModel>();
-
                 SqlCommand com = new SqlCommand("GetDeals", db);
                 com.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter da = new SqlDataAdapter(com);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
-                foreach (DataRow dr in dt.Rows)
-                {
-                    ModelObjects.Add(new DealModel
-                    {
-                        Id = Convert.ToInt32(dr["Id"]),
-                        Buyer_Id = Convert.ToInt32(dr["Date"]),
-                        Seller_Id = Convert.ToInt32(dr["StartTime"]),
-                        Item_Id = Convert.ToInt32(dr["EndTime"]),
-                        Auction_Id = Convert.ToInt32(dr["Income"]),
-                        DealState_Id = Convert.ToInt32(dr["Date"]),
-                        Time = Convert.ToDateTime(dr["StartTime"]),
-                        Price = Convert.ToDecimal(dr["EndTime"])
-                    });
-                }
-                return ModelObjects;
+                return FillTable(dt);
             }
         }
 
-        public bool Update(AuctionModel obj)
+        private List<DealModel> FillTable(DataTable dt)
+        {
+            List<DealModel> ModelObjects = new List<DealModel>();
+            foreach (DataRow dr in dt.Rows)
+            {
+                ModelObjects.Add(new DealModel
+                {
+                    Id = Convert.ToInt32(dr["Id"]),
+                    Buyer_Id = Convert.ToInt32(dr["Byer_Id"]),
+                    Seller_Id = Convert.ToInt32(dr["Seller_Id"]),
+                    Item_Id = Convert.ToInt32(dr["Item_Id"]),
+                    Auction_Id = Convert.ToInt32(dr["Auction_Id"]),
+                    DealState_Id = Convert.ToInt32(dr["DealState_Id"]),
+                    Time = DateTime.ParseExact(Convert.ToString((dr["Time"])), "HH:mm:ss", CultureInfo.InvariantCulture),
+                    Price = Convert.ToDecimal(dr["Price"])
+                });
+            }
+            return ModelObjects;
+        }
+
+        public DealModel GetById(int id)
         {
             using (SqlConnection db = SQLConnector.Connect())
             {
                 db.Open();
 
-                SqlCommand com = new SqlCommand("UpdateAuction", db);
+                DealModel ModelObject = new DealModel();
+
+                SqlCommand com = new SqlCommand("GetDealById", db);
+                com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.AddWithValue("@Id", id);
+                com.ExecuteNonQuery();
+                SqlDataAdapter da = new SqlDataAdapter(com);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                return FillTable(dt)[0];
+            }
+        }
+
+        public bool Update(DealModel obj)
+        {
+            using (SqlConnection db = SQLConnector.Connect())
+            {
+                db.Open();
+
+                SqlCommand com = new SqlCommand("UpdateDeal", db);
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("@Id", obj.Id);
-                com.Parameters.AddWithValue("@Date", obj.Date);
-                com.Parameters.AddWithValue("@StartTime", obj.StartTime);
-                com.Parameters.AddWithValue("@EndTime", obj.EndTime);
-                com.Parameters.AddWithValue("@Income", obj.Income);
+                com.Parameters.AddWithValue("@Buyer_Id", obj.Buyer_Id);
+                com.Parameters.AddWithValue("@Seller_Id", obj.Seller_Id);
+                com.Parameters.AddWithValue("@Item_Id", obj.Item_Id);
+                com.Parameters.AddWithValue("@Auction_Id", obj.Auction_Id);
+                com.Parameters.AddWithValue("@DealState_Id", obj.DealState_Id);
+                com.Parameters.AddWithValue("@Time", obj.Time);
+                com.Parameters.AddWithValue("@Price", obj.Price);
 
                 if (com.ExecuteNonQuery() == -1)
                     return false;

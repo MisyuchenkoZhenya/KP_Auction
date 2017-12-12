@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using KP_Auction.Models;
 using KP_Auction.Repositories;
-using KP_Auction.ViewModel;
 
 namespace KP_Auction.Controllers
 {
@@ -34,25 +33,24 @@ namespace KP_Auction.Controllers
         public ActionResult Create()
         { 
             ItemCategoryRepository repository = new ItemCategoryRepository();
-            ItemViewModel viewModel = new ItemViewModel
+            ItemModel model = new ItemModel
             {
-                Item = new ItemModel(),
                 ItemCategories = repository.GetAll()
             };
 
-            return View(viewModel);
+            return View(model);
         }
 
         // POST: Item/Create
         [HttpPost]
-        public ActionResult Create(ItemViewModel viewModel)
+        public ActionResult Create(ItemModel ModelObject)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
                     ItemRepository repository = new ItemRepository();
-                    repository.Add(viewModel.Item);
+                    repository.Add(ModelObject);
                     return RedirectToAction("GetAll");
                 }
 

@@ -28,6 +28,7 @@ namespace KP_Auction.Models
         [DisplayFormat(DataFormatString = "{0:HH.mm}", ApplyFormatInEditMode = true)]
         public DateTime EndTime { get; set; }
 
+        [DefaultValue(0)]
         public decimal Income { get; set; }
     }
 }
