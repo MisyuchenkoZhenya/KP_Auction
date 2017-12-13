@@ -6,13 +6,16 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>TradingProgressModel</h4>
+        <h3>TradingProgressModel</h3>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.Deal_Id, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Deal_Id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(
+                    model => model.Deal_Id,
+                    new SelectList(Model.Deals, "Id", "Deal", Model.Deal_Id),
+                    new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Deal_Id, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -20,7 +23,10 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Byer_Id, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Byer_Id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(
+                    model => model.Byer_Id,
+                    new SelectList(Model.Buyers, "Id", "Participant", Model.Byer_Id),
+                    new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Byer_Id, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -36,7 +42,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.StepRate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.StepRate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.StepRate, new { htmlAttributes = new { @class = "form-control", @Value = 0} })
                 @Html.ValidationMessageFor(model => model.StepRate, "", new { @class = "text-danger" })
             </div>
         </div>

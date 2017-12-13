@@ -13,23 +13,28 @@ namespace KP_Auction.Models
         public int Id { get; set; }
 
         [Required]
+        [Display(Name = "Byer")]
         public int Buyer_Id { get; set; }
 
         [Required]
+        [Display(Name = "Seller")]
         public int Seller_Id { get; set; }
 
         [Required]
+        [Display(Name = "Item")]
         public int Item_Id { get; set; }
 
         [Required]
+        [Display(Name = "Auction")]
         public int Auction_Id { get; set; }
 
         [Required]
+        [Display(Name = "Deal State")]
         public int DealState_Id { get; set; }
 
         [Required]
-        [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:g}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Time)]
+        [DisplayFormat(DataFormatString = "{0:HH.mm}", ApplyFormatInEditMode = true)]
         public DateTime Time { get; set; }
 
         [Required]

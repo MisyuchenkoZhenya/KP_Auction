@@ -20,6 +20,7 @@ namespace KP_Auction.Models
         [StringLength(256, ErrorMessage = "Length can not exceed 256 characters")]
         public string Description { get; set; }
 
+        [Required]
         [Display(Name = "Category")]
         public int Category_Id { get; set; }
 
