@@ -26,8 +26,8 @@ namespace KP_Auction.Models
         public DateTime StepTime { get; set; }
 
         [Required]
-        [Range(0, double.MaxValue, ErrorMessage = "Please inter valid step rate")]
-        public decimal StepRate { get; set; }
+        [Range(0, float.MaxValue, ErrorMessage = "Please inter valid step rate")]
+        public int StepRate { get; set; }
 
         [ForeignKey("Deal_Id")]
         public IEnumerable<DealModel> Deals { get; set; }

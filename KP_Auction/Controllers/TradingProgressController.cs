@@ -69,8 +69,15 @@ namespace KP_Auction.Controllers
         public ActionResult Edit(int id)
         {
             TradingProgressRepository repository = new TradingProgressRepository();
+            ParticipantRepository participantRep = new ParticipantRepository();
+            DealRepository dealRep = new DealRepository();
 
-            return View(repository.GetById(id));
+            TradingProgressModel model = repository.GetById(id);
+
+            model.Buyers = participantRep.GetAll();
+            model.Deals = dealRep.GetAll();
+
+            return View(model);
         }
 
         // POST: TradingProgress/Edit/5

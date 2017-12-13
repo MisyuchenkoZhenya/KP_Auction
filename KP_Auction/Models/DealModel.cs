@@ -38,8 +38,8 @@ namespace KP_Auction.Models
         public DateTime Time { get; set; }
 
         [Required]
-        [Range(0, double.MaxValue, ErrorMessage = "Please inter price from 0")]
-        public decimal Price { get; set; }
+        [Range(0, int.MaxValue, ErrorMessage = "Please inter price from 0")]
+        public int Price { get; set; }
 
         [ForeignKey("Buyer_Id")]
         public IEnumerable<ParticipantModel> Buyers { get; set; }
@@ -52,5 +52,12 @@ namespace KP_Auction.Models
         [ForeignKey("DealState_Id")]
         public IEnumerable<DealStateModel> DealStates { get; set; }
 
+        public string Info {
+            get
+            {
+                return String.Format("Auction: {0} ({1})", Auction_Id, Time);
+            }
+            private set { }
+        }
     }
 }

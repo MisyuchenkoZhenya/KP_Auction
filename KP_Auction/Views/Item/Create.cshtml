@@ -30,7 +30,7 @@
             <div class="col-md-10">
                 @Html.DropDownListFor(
                     model => model.Category_Id,
-                    new SelectList(Model.ItemCategories, "Id", "ItemCategory", Model.Category_Id),
+                    new SelectList(Model.ItemCategories, "Id", "Category", Model.Category_Id),
                     new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Category_Id, "", new { @class = "text-danger" })
             </div>

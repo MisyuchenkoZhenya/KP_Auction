@@ -59,7 +59,7 @@ namespace KP_Auction.Repositories
                     Deal_Id = Convert.ToInt32(dr["Deal_Id"]),
                     Byer_Id = Convert.ToInt32(dr["Byer_Id"]),
                     StepTime = DateTime.ParseExact(Convert.ToString((dr["StepTime"])), "HH:mm:ss", CultureInfo.InvariantCulture),
-                    StepRate = Convert.ToDecimal(dr["StepRate"])
+                    StepRate = Convert.ToInt32(dr["StepRate"])
                 });
             }
             return ModelObjects;

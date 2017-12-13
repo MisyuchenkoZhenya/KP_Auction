@@ -61,7 +61,9 @@ namespace KP_Auction.Controllers
         {
             ItemCategoryRepository repository = new ItemCategoryRepository();
 
-            return View(repository.GetById(id));
+            ItemCategoryModel model = repository.GetById(id);
+
+            return View(model);
         }
 
         // POST: ItemCategory/Edit/5

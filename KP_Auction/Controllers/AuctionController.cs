@@ -61,7 +61,9 @@ namespace KP_Auction.Controllers
         {
             AuctionRepository repository = new AuctionRepository();
 
-            return View(repository.GetById(id));
+            AuctionModel model = repository.GetById(id);
+
+            return View(model);
         }
 
         // POST: Auction/Edit/5

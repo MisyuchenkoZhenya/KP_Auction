@@ -25,10 +25,10 @@ namespace KP_Auction.Models
         public int Category_Id { get; set; }
 
         [Required]
-        public decimal StartedPrice { get; set; }
+        public int StartedPrice { get; set; }
 
         [Required]
-        public decimal PriceGrowth { get; set; }
+        public int PriceGrowth { get; set; }
 
         [ForeignKey("Category_Id")]
         public IEnumerable<ItemCategoryModel> ItemCategories { get; set; }

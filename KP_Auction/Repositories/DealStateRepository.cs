@@ -21,7 +21,7 @@ namespace KP_Auction.Repositories
 
                 SqlCommand com = new SqlCommand("AddDealState", db);
                 com.CommandType = CommandType.StoredProcedure;
-                com.Parameters.AddWithValue("@Category", obj.State);
+                com.Parameters.AddWithValue("@State", obj.State);
 
                 if (com.ExecuteNonQuery() == -1)
                     return false;

@@ -29,6 +29,6 @@ namespace KP_Auction.Models
         public DateTime EndTime { get; set; }
 
         [DefaultValue(0)]
-        public decimal Income { get; set; }
+        public int Income { get; set; }
     }
 }

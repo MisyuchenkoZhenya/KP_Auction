@@ -74,8 +74,19 @@ namespace KP_Auction.Controllers
         public ActionResult Edit(int id)
         {
             DealRepository repository = new DealRepository();
+            AuctionRepository auctionRep = new AuctionRepository();
+            ParticipantRepository participantRep = new ParticipantRepository();
+            DealStateRepository dealStateRep = new DealStateRepository();
+            ItemRepository itemRep = new ItemRepository();
 
-            return View(repository.GetById(id));
+            DealModel model = repository.GetById(id);
+            model.Auctions = auctionRep.GetAll();
+            model.Buyers = participantRep.GetAll();
+            model.Sellers = participantRep.GetAll();
+            model.DealStates = dealStateRep.GetAll();
+            model.Items = itemRep.GetAll();
+
+            return View(model);
         }
 
         // POST: Deal/Edit/5

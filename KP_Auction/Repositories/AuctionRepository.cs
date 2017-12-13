@@ -59,7 +59,7 @@ namespace KP_Auction.Repositories
                     Date = Convert.ToDateTime(dr["Date"]),
                     StartTime = DateTime.ParseExact(Convert.ToString((dr["StartTime"])), "HH:mm:ss", CultureInfo.InvariantCulture),
                     EndTime = DateTime.ParseExact(Convert.ToString((dr["EndTime"])), "HH:mm:ss", CultureInfo.InvariantCulture),
-                    Income = Convert.ToDecimal(dr["Income"])
+                    Income = Convert.ToInt32(dr["Income"])
                 });
             }
             return ModelObjects;

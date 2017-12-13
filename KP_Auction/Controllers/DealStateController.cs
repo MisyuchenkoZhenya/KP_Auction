@@ -61,7 +61,9 @@ namespace KP_Auction.Controllers
         {
             DealStateRepository repository = new DealStateRepository();
 
-            return View(repository.GetById(id));
+            DealStateModel model = repository.GetById(id);
+
+            return View(model);
         }
 
         // POST: DealState/Edit/5

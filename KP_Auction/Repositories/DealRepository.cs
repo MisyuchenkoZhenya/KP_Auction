@@ -59,13 +59,13 @@ namespace KP_Auction.Repositories
                 ModelObjects.Add(new DealModel
                 {
                     Id = Convert.ToInt32(dr["Id"]),
-                    Buyer_Id = Convert.ToInt32(dr["Byer_Id"]),
+                    Buyer_Id = Convert.ToInt32(dr["Buyer_Id"]),
                     Seller_Id = Convert.ToInt32(dr["Seller_Id"]),
                     Item_Id = Convert.ToInt32(dr["Item_Id"]),
                     Auction_Id = Convert.ToInt32(dr["Auction_Id"]),
                     DealState_Id = Convert.ToInt32(dr["DealState_Id"]),
                     Time = DateTime.ParseExact(Convert.ToString((dr["Time"])), "HH:mm:ss", CultureInfo.InvariantCulture),
-                    Price = Convert.ToDecimal(dr["Price"])
+                    Price = Convert.ToInt32(dr["Price"])
                 });
             }
             return ModelObjects;

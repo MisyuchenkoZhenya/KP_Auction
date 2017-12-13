@@ -14,7 +14,7 @@
             <div class="col-md-10">
                 @Html.DropDownListFor(
                     model => model.Buyer_Id,
-                    new SelectList(Model.Buyers, "Id", "Participant", Model.Buyer_Id),
+                    new SelectList(Model.Buyers, "Id", "FullName", Model.Buyer_Id),
                     new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Buyer_Id, "", new { @class = "text-danger" })
             </div>
@@ -25,7 +25,7 @@
             <div class="col-md-10">
                 @Html.DropDownListFor(
                     model => model.Seller_Id,
-                    new SelectList(Model.Sellers, "Id", "Participant", Model.Seller_Id),
+                    new SelectList(Model.Sellers, "Id", "FullName", Model.Seller_Id),
                     new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Seller_Id, "", new { @class = "text-danger" })
             </div>
@@ -36,7 +36,7 @@
             <div class="col-md-10">
                 @Html.DropDownListFor(
                     model => model.Item_Id,
-                    new SelectList(Model.Items, "Id", "Item", Model.Item_Id),
+                    new SelectList(Model.Items, "Id", "Name", Model.Item_Id),
                     new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Item_Id, "", new { @class = "text-danger" })
             </div>
@@ -47,7 +47,7 @@
             <div class="col-md-10">
                 @Html.DropDownListFor(
                     model => model.Auction_Id,
-                    new SelectList(Model.Auctions, "Id", "Auction", Model.Auction_Id),
+                    new SelectList(Model.Auctions, "Id", "Id", Model.Auction_Id),
                     new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Auction_Id, "", new { @class = "text-danger" })
             </div>
@@ -58,7 +58,7 @@
             <div class="col-md-10">
                 @Html.DropDownListFor(
                     model => model.DealState_Id,
-                    new SelectList(Model.DealStates, "Id", "DealState", Model.DealState_Id),
+                    new SelectList(Model.DealStates, "Id", "State", Model.DealState_Id),
                     new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.DealState_Id, "", new { @class = "text-danger" })
             </div>

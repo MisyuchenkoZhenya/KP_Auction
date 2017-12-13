@@ -56,11 +56,12 @@ namespace KP_Auction.Repositories
             {
                 ModelObjects.Add(new ItemModel
                 {
+                    Id = Convert.ToInt32(dr["Id"]),
                     Name = Convert.ToString(dr["Name"]),
                     Description = Convert.ToString(dr["Description"]),
                     Category_Id = Convert.ToInt32(dr["Category_Id"]),
-                    StartedPrice = Convert.ToDecimal(dr["StartedPrice"]),
-                    PriceGrowth = Convert.ToDecimal(dr["PriceGrowth"])
+                    StartedPrice = Convert.ToInt32(dr["StartedPrice"]),
+                    PriceGrowth = Convert.ToInt32(dr["PriceGrowth"])
                 });
             }
             return ModelObjects;

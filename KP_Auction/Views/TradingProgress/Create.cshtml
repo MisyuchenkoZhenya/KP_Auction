@@ -14,7 +14,7 @@
             <div class="col-md-10">
                 @Html.DropDownListFor(
                     model => model.Deal_Id,
-                    new SelectList(Model.Deals, "Id", "Deal", Model.Deal_Id),
+                    new SelectList(Model.Deals, "Id", "Info", Model.Deal_Id),
                     new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Deal_Id, "", new { @class = "text-danger" })
             </div>
@@ -25,7 +25,7 @@
             <div class="col-md-10">
                 @Html.DropDownListFor(
                     model => model.Byer_Id,
-                    new SelectList(Model.Buyers, "Id", "Participant", Model.Byer_Id),
+                    new SelectList(Model.Buyers, "Id", "FullName", Model.Byer_Id),
                     new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Byer_Id, "", new { @class = "text-danger" })
             </div>

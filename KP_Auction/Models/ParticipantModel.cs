@@ -35,6 +35,16 @@ namespace KP_Auction.Models
 
         [Required]
         [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^((8|\+7)[\-]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$", ErrorMessage = "Incorrect adress")]
         public string PhoneNumber { get; set; }
+
+        public string FullName
+        {
+            get
+            {
+                return String.Format("{0} {1}. {2}. (...{3})", LastName, FirstName[0], MiddleName[0], PhoneNumber.Substring(PhoneNumber.Length -5, 5));
+            }
+            private set { }
+        }
     }
 }
