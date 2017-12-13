@@ -31,3 +31,21 @@ textarea {
 h3 {
     margin-left: 20%;
 }
+
+#descr {
+    width: 40%;
+    text-overflow: ellipsis;
+}
+
+.table tr:first-child {
+    background-color: #555558;
+    color: #FEFEFF;
+}
+
+.table tr:nth-child(even) {
+    background-color: #EEEEF0;
+}
+
+.tbl-keys {
+    
+}

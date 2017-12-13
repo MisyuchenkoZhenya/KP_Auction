@@ -38,7 +38,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.StepRate)
         </td>
-        <td>
+        <td class="tbl-keys" align="right">
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id }, new { onclick = "return confirm('Are sure wants to delete?');" })
         </td>
