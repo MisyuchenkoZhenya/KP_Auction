@@ -52,6 +52,15 @@ namespace KP_Auction.Models
         [ForeignKey("DealState_Id")]
         public IEnumerable<DealStateModel> DealStates { get; set; }
 
+        public string Buyer { get; set; }
+        public string Seller { get; set; }
+        public string Item { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime Auction { get; set; }
+        [Display(Name = "Deal State")]
+        public string DealState { get; set; }
+
         public string Info {
             get
             {

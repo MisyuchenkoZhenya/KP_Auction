@@ -32,5 +32,7 @@ namespace KP_Auction.Models
 
         [ForeignKey("Category_Id")]
         public IEnumerable<ItemCategoryModel> ItemCategories { get; set; }
+
+        public string Category { get; set; }
     }
 }

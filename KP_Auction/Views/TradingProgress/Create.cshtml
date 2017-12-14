@@ -21,13 +21,13 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Byer_Id, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Buyer_Id, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(
-                    model => model.Byer_Id,
-                    new SelectList(Model.Buyers, "Id", "FullName", Model.Byer_Id),
+                    model => model.Buyer_Id,
+                    new SelectList(Model.Buyers, "Id", "FullName", Model.Buyer_Id),
                     new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Byer_Id, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Buyer_Id, "", new { @class = "text-danger" })
             </div>
         </div>
 

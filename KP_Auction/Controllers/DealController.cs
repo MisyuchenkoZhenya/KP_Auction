@@ -20,7 +20,7 @@ namespace KP_Auction.Controllers
         {
             DealRepository repository = new DealRepository();
             ModelState.Clear();
-            return View(repository.GetAll());
+            return View(repository.GetAll("GetDealsJoin", true));
         }
 
         // GET: Deal/Details/5

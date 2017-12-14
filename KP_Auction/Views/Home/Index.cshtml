@@ -1,3 +1,14 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<center>
+    <div>
+        @Html.ActionLink("Admin app", "GetAll", "Auction", null, new { @class = "btn btn-primary" })
+        @Html.ActionLink("User app", "GetAll", "Auction", null, new { @class = "btn btn-primary" })
+    </div>
+</center>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

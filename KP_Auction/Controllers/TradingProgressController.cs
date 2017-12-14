@@ -20,7 +20,7 @@ namespace KP_Auction.Controllers
         {
             TradingProgressRepository repository = new TradingProgressRepository();
             ModelState.Clear();
-            return View(repository.GetAll());
+            return View(repository.GetAll("GetTradingProgressJoin", true));
         }
 
         // GET: TradingProgress/Details/5

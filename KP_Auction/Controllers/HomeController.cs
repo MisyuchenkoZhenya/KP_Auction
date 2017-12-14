@@ -13,7 +13,7 @@ namespace KP_Auction.Controllers
 
         public ActionResult Index()
         {
-            return RedirectToAction("GetAll", "Auction");
+            return View();
         }
         
     }

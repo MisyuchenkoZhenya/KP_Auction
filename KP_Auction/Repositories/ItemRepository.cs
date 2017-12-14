@@ -33,23 +33,23 @@ namespace KP_Auction.Repositories
             }
         }
 
-        public List<ItemModel> GetAll()
+        public List<ItemModel> GetAll(string table = "GetItems", bool useJoin = false)
         {
             using (SqlConnection db = SQLConnector.Connect())
             {
                 db.Open();
 
-                SqlCommand com = new SqlCommand("GetItems", db);
+                SqlCommand com = new SqlCommand(table, db);
                 com.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter da = new SqlDataAdapter(com);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
-                return FillTable(dt);
+                return FillTable(dt, useJoin);
             }
         }
 
-        private List<ItemModel> FillTable(DataTable dt)
+        private List<ItemModel> FillTable(DataTable dt, bool useJoin = false)
         {
             List<ItemModel> ModelObjects = new List<ItemModel>();
             foreach (DataRow dr in dt.Rows)
@@ -61,7 +61,8 @@ namespace KP_Auction.Repositories
                     Description = Convert.ToString(dr["Description"]),
                     Category_Id = Convert.ToInt32(dr["Category_Id"]),
                     StartedPrice = Convert.ToInt32(dr["StartedPrice"]),
-                    PriceGrowth = Convert.ToInt32(dr["PriceGrowth"])
+                    PriceGrowth = Convert.ToInt32(dr["PriceGrowth"]),
+                    Category = useJoin ? Convert.ToString(dr["Category"]) : ""
                 });
             }
             return ModelObjects;
@@ -72,8 +73,6 @@ namespace KP_Auction.Repositories
             using (SqlConnection db = SQLConnector.Connect())
             {
                 db.Open();
-
-                ItemModel ModelObject = new ItemModel();
 
                 SqlCommand com = new SqlCommand("GetItemById", db);
                 com.CommandType = CommandType.StoredProcedure;

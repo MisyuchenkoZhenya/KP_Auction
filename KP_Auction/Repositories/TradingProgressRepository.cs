@@ -22,7 +22,7 @@ namespace KP_Auction.Repositories
                 SqlCommand com = new SqlCommand("AddTradingProgress", db);
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("@Deal_Id", obj.Deal_Id);
-                com.Parameters.AddWithValue("@Byer_Id", obj.Byer_Id);
+                com.Parameters.AddWithValue("@Byer_Id", obj.Buyer_Id);
                 com.Parameters.AddWithValue("@StepTime", obj.StepTime);
                 com.Parameters.AddWithValue("@StepRate", obj.StepRate);
 
@@ -32,23 +32,23 @@ namespace KP_Auction.Repositories
             }
         }
 
-        public List<TradingProgressModel> GetAll()
+        public List<TradingProgressModel> GetAll(string table = "GetTradingProgresses", bool useJoin = false)
         {
             using (SqlConnection db = SQLConnector.Connect())
             {
                 db.Open();
 
-                SqlCommand com = new SqlCommand("GetTradingProgresses", db);
+                SqlCommand com = new SqlCommand(table, db);
                 com.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter da = new SqlDataAdapter(com);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
-                return FillTable(dt);
+                return FillTable(dt, useJoin);
             }
         }
 
-        private List<TradingProgressModel> FillTable(DataTable dt)
+        private List<TradingProgressModel> FillTable(DataTable dt, bool useJoin = false)
         {
             List<TradingProgressModel> ModelObjects = new List<TradingProgressModel>();
             foreach (DataRow dr in dt.Rows)
@@ -57,9 +57,11 @@ namespace KP_Auction.Repositories
                 {
                     Id = Convert.ToInt32(dr["Id"]),
                     Deal_Id = Convert.ToInt32(dr["Deal_Id"]),
-                    Byer_Id = Convert.ToInt32(dr["Byer_Id"]),
+                    Buyer_Id = Convert.ToInt32(dr["Byer_Id"]),
                     StepTime = DateTime.ParseExact(Convert.ToString((dr["StepTime"])), "HH:mm:ss", CultureInfo.InvariantCulture),
-                    StepRate = Convert.ToInt32(dr["StepRate"])
+                    StepRate = Convert.ToInt32(dr["StepRate"]),
+                    Deal = useJoin ? DateTime.ParseExact(Convert.ToString((dr["Time"])), "HH:mm:ss", CultureInfo.InvariantCulture) : DateTime.Now,
+                    Buyer = useJoin ? Convert.ToString(dr["BuyerName"]) : ""
                 });
             }
             return ModelObjects;
@@ -95,7 +97,7 @@ namespace KP_Auction.Repositories
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("@Id", obj.Id);
                 com.Parameters.AddWithValue("@Deal_Id", obj.Deal_Id);
-                com.Parameters.AddWithValue("@Byer_Id", obj.Byer_Id);
+                com.Parameters.AddWithValue("@Byer_Id", obj.Buyer_Id);
                 com.Parameters.AddWithValue("@StepTime", obj.StepTime);
                 com.Parameters.AddWithValue("@StepRate", obj.StepRate);
 

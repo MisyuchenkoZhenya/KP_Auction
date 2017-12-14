@@ -20,7 +20,7 @@ namespace KP_Auction.Controllers
         {
             ItemRepository repository = new ItemRepository();
             ModelState.Clear();
-            return View(repository.GetAll());
+            return View(repository.GetAll("GetItemsJoin", true));
         }
 
         // GET: Item/Details/5

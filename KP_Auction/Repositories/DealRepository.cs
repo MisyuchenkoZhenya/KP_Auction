@@ -35,23 +35,23 @@ namespace KP_Auction.Repositories
             }
         }
 
-        public List<DealModel> GetAll()
+        public List<DealModel> GetAll(string table = "GetDeals", bool useJoin = false)
         {
             using (SqlConnection db = SQLConnector.Connect())
             {
                 db.Open();
 
-                SqlCommand com = new SqlCommand("GetDeals", db);
+                SqlCommand com = new SqlCommand(table, db);
                 com.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter da = new SqlDataAdapter(com);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
-                return FillTable(dt);
+                return FillTable(dt, useJoin);
             }
         }
 
-        private List<DealModel> FillTable(DataTable dt)
+        private List<DealModel> FillTable(DataTable dt, bool useJoin = false)
         {
             List<DealModel> ModelObjects = new List<DealModel>();
             foreach (DataRow dr in dt.Rows)
@@ -65,7 +65,12 @@ namespace KP_Auction.Repositories
                     Auction_Id = Convert.ToInt32(dr["Auction_Id"]),
                     DealState_Id = Convert.ToInt32(dr["DealState_Id"]),
                     Time = DateTime.ParseExact(Convert.ToString((dr["Time"])), "HH:mm:ss", CultureInfo.InvariantCulture),
-                    Price = Convert.ToInt32(dr["Price"])
+                    Price = Convert.ToInt32(dr["Price"]),
+                    Buyer = useJoin ? Convert.ToString(dr["BuyerName"]) : "",
+                    Seller = useJoin ? Convert.ToString(dr["SellerName"]) : "",
+                    Item = useJoin ? Convert.ToString(dr["ItemName"]) : "",
+                    Auction = useJoin ? Convert.ToDateTime(dr["Date"]) : DateTime.Now,
+                    DealState = useJoin ? Convert.ToString(dr["State"]) : ""
                 });
             }
             return ModelObjects;
