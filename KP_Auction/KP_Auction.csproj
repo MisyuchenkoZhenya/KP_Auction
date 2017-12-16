@@ -171,6 +171,7 @@
     <Compile Include="Repositories\ParticipantRepository.cs" />
     <Compile Include="Repositories\SQLConnector.cs" />
     <Compile Include="Repositories\TradingProgressRepository.cs" />
+    <Compile Include="ViewModel\StartViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -237,10 +238,10 @@
     <Content Include="Views\Shared\_AuctionsPage.cshtml" />
     <Content Include="Views\AuctionManage\AddDeals.cshtml" />
     <Content Include="Views\AuctionManage\NewDeal.cshtml" />
+    <Content Include="Views\AuctionManage\Start.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ViewModel\" />
     <Folder Include="Views\DealManage\" />
   </ItemGroup>
   <ItemGroup>

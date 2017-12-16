@@ -68,6 +68,22 @@ namespace KP_Auction.Repositories
             return ModelObjects;
         }
 
+        public bool SetSold(int Id)
+        {
+            using (SqlConnection db = SQLConnector.Connect())
+            {
+                db.Open();
+
+                SqlCommand com = new SqlCommand("SetSold", db);
+                com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.AddWithValue("@Id", Id);
+
+                if (com.ExecuteNonQuery() == -1)
+                    return false;
+                return true;
+            }
+        }
+
         public ItemModel GetById(int id)
         {
             using (SqlConnection db = SQLConnector.Connect())

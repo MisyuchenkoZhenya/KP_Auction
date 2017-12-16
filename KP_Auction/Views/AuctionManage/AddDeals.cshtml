@@ -5,7 +5,7 @@
 
 <center>
     <p>
-        @Html.ActionLink("Start auction", "Start", "AuctionManage", null, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Start auction", "Start", "AuctionManage", new  { id = ViewBag.AuctionId }, new { @class = "btn btn-primary" })
     </p>
 </center>
 <p>
@@ -18,7 +18,7 @@
     int i = 0;
     foreach (var item in Model.Reverse())
     {
-    <div class="auct-block"  style="margin: 0 70% 0 1px; text-align: left;">
+    <div class="auct-block"  style="margin: 0 70% 5px 1px; text-align: left;">
         @(++i).<br />
         Item: @Html.DisplayFor(modelItem => item.Item)<br />
         Seller: @Html.DisplayFor(modelItem => item.Seller)<br />

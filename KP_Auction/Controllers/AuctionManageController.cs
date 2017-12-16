@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using KP_Auction.Models;
 using KP_Auction.Repositories;
+using KP_Auction.ViewModel;
 
 
 namespace KP_Auction.Controllers
@@ -52,7 +53,7 @@ namespace KP_Auction.Controllers
                 Buyers = participantRep.GetAll(),
                 Sellers = participantRep.GetAll(),
                 DealStates = dealStateRep.GetAll(),
-                Items = itemRep.GetAll()
+                Items = itemRep.GetAll("GetAvailableItems")
             };
 
             ViewBag.Id = id;
@@ -67,12 +68,48 @@ namespace KP_Auction.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    DealRepository repository = new DealRepository();
-                    repository.Add(ModelObject);
+                    DealRepository dealRepository = new DealRepository();
+                    ItemRepository itemRepository = new ItemRepository();
+                    itemRepository.SetSold(ModelObject.Item_Id);
+
+                    dealRepository.Add(ModelObject);
                     return RedirectToAction("AddDeals", "AuctionManage", new { id = ModelObject.Auction_Id });
                 }
 
                 return View();
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: AuctionManage/Edit/5!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        public ActionResult Start(int id)
+        {
+            DealRepository dealRepository = new DealRepository();
+            ParticipantRepository participantRepository = new ParticipantRepository();
+            StartViewModel startViewModel = new StartViewModel
+            {
+                deals = dealRepository.GetForAuction(id),
+                participants = participantRepository.GetAll()
+            };
+            
+            ModelState.Clear();
+            ViewBag.AuctionId = id;
+
+            return View(startViewModel);
+        }
+
+        // POST: AuctionManage/Edit/5
+        [HttpPost]
+        public ActionResult Start(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add update logic here
+
+                return RedirectToAction("Index");
             }
             catch
             {

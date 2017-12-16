@@ -1,0 +1,39 @@
+﻿@{
+    Layout = "~/Views/Shared/_AuctionsPage.cshtml";
+}
+@model KP_Auction.ViewModel.StartViewModel
+
+@{
+    if (Model.deals.Count() != 0)
+    {
+        KP_Auction.Models.DealModel upperDeal = Model.deals.First();
+        <div class="auct-block" style="margin: 0 40% 5px 40%; text-align: left;">
+            Item: @upperDeal.Item<br />
+            Seller: @upperDeal.Seller<br />
+        </div>
+    }
+    else
+    {
+        <center>
+            <p>
+                @Html.ActionLink("End auction", "Start", "AuctionManage", new { id = ViewBag.id }, new { @class = "btn btn-primary" })
+            </p>
+        </center>
+    }
+
+    if (Model.deals.Count() > 1)
+    {
+        <br />
+        <hr />
+        <br />
+        for (int i = 0; i < Model.deals.Count() - 1; i++)
+        {
+            <div class="auct-block" style="margin: 0 40% 5px 40%; text-align: left;">
+                Item: @Model.deals.ElementAt(i+1).Item<br />
+                Seller: @Model.deals.ElementAt(i + 1).Item<br />
+            </div>
+        }
+    }
+}
+
+
