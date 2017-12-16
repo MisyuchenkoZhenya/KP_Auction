@@ -51,6 +51,26 @@ namespace KP_Auction.Repositories
             }
         }
 
+        public List<DealModel> GetForAuction(int id)
+        {
+            using (SqlConnection db = SQLConnector.Connect())
+            {
+                db.Open();
+
+                DealModel ModelObject = new DealModel();
+
+                SqlCommand com = new SqlCommand("GetDealsByAuctionId", db);
+                com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.AddWithValue("@Id", id);
+                com.ExecuteNonQuery();
+                SqlDataAdapter da = new SqlDataAdapter(com);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                return FillTable(dt, true);
+            }
+        }
+
         private List<DealModel> FillTable(DataTable dt, bool useJoin = false)
         {
             List<DealModel> ModelObjects = new List<DealModel>();

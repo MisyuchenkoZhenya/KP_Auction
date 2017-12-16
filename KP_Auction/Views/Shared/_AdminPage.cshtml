@@ -18,6 +18,7 @@
         @Html.ActionLink("Participants", "GetAll", "Participant", null, new { @class = "btn btn-primary" })
         @Html.ActionLink("TradingProgresses", "GetAll", "TradingProgress", null, new { @class = "btn btn-primary" })
     </div>
+        @Html.ActionLink("Exit", "Index", "Home", null, new { @class = "btn btn-primary", @id = "a-exit-btn" })
     @RenderBody()
 
     @Scripts.Render("~/bundles/jquery")

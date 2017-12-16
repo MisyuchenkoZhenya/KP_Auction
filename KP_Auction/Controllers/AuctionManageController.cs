@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using KP_Auction.Models;
+using KP_Auction.Repositories;
+
 
 namespace KP_Auction.Controllers
 {
@@ -11,7 +14,22 @@ namespace KP_Auction.Controllers
         // GET: AuctionManage
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("GetAuctions");
+        }
+
+        public ActionResult GetAuctions()
+        {
+            AuctionRepository repository = new AuctionRepository();
+            ModelState.Clear();
+            return View(repository.GetAll("GetFutureAuctions"));
+        }
+
+        public ActionResult AddDeals(int id)
+        {
+            DealRepository repository = new DealRepository();
+            ModelState.Clear();
+            ViewBag.AuctionId = id;
+            return View(repository.GetForAuction(id));
         }
 
         // GET: AuctionManage/Details/5
@@ -20,21 +38,41 @@ namespace KP_Auction.Controllers
             return View();
         }
 
-        // GET: AuctionManage/Create
-        public ActionResult Create()
+        // GET: Deal/Create
+        public ActionResult NewDeal(int id)
         {
-            return View();
+            AuctionRepository auctionRep = new AuctionRepository();
+            ParticipantRepository participantRep = new ParticipantRepository();
+            DealStateRepository dealStateRep = new DealStateRepository();
+            ItemRepository itemRep = new ItemRepository();
+
+            DealModel model = new DealModel
+            {
+                Auctions = auctionRep.GetAll(),
+                Buyers = participantRep.GetAll(),
+                Sellers = participantRep.GetAll(),
+                DealStates = dealStateRep.GetAll(),
+                Items = itemRep.GetAll()
+            };
+
+            ViewBag.Id = id;
+            return View(model);
         }
 
-        // POST: AuctionManage/Create
+        // POST: Deal/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult NewDeal(DealModel ModelObject)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    DealRepository repository = new DealRepository();
+                    repository.Add(ModelObject);
+                    return RedirectToAction("AddDeals", "AuctionManage", new { id = ModelObject.Auction_Id });
+                }
 
-                return RedirectToAction("Index");
+                return View();
             }
             catch
             {

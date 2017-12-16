@@ -3,9 +3,8 @@
 }
 
 body {
-    padding-top: 50px;
-    padding-bottom: 20px;
     background-color: #fafafd;
+    padding: 20px 1px 0 1px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -46,6 +45,20 @@ h3 {
     background-color: #EEEEF0;
 }
 
-.tbl-keys {
-    
+.auct-block {
+    position: relative;
+    box-shadow: inset 0 4px 5px 0 #dddddd;
+    border: 1px solid #c6c7cc;
+    background: #fdfdfd;
+    border-radius: 5px;
+    border-color: rgb(103, 125, 223);
+    margin: 0 40% 0 40%;
+    text-align: center;
+    word-wrap: break-word;
+    margin-bottom: 3px;
+}
+
+#a-exit-btn {
+    position: absolute;
+    right: 1px;
 }

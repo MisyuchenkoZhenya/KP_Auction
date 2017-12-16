@@ -10,11 +10,17 @@ namespace KP_Auction.Controllers
 {
     public class HomeController : Controller
     {
-
         public ActionResult Index()
         {
             return View();
         }
+
+        public ActionResult Authorize()
+        {
+
+            return View(); 
+        }
+
         
     }
 }

@@ -32,13 +32,13 @@ namespace KP_Auction.Repositories
             }
         }
        
-        public List<AuctionModel> GetAll()
+        public List<AuctionModel> GetAll(string table = "GetAuctions")
         {
             using (SqlConnection db = SQLConnector.Connect())
             {
                 db.Open();
 
-                SqlCommand com = new SqlCommand("GetAuctions", db);
+                SqlCommand com = new SqlCommand(table, db);
                 com.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter da = new SqlDataAdapter(com);
                 DataTable dt = new DataTable();

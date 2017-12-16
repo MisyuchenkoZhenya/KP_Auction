@@ -161,6 +161,7 @@
     <Compile Include="Models\ItemCategoryModel.cs" />
     <Compile Include="Models\ParticipantModel.cs" />
     <Compile Include="Models\TradingProgressModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AuctionRepository.cs" />
     <Compile Include="Repositories\DealRepository.cs" />
@@ -232,11 +233,15 @@
     <Content Include="Views\TradingProgress\Create.cshtml" />
     <Content Include="Views\TradingProgress\Edit.cshtml" />
     <Content Include="Views\Item\Create.cshtml" />
+    <Content Include="Views\AuctionManage\GetAuctions.cshtml" />
+    <Content Include="Views\Shared\_AuctionsPage.cshtml" />
+    <Content Include="Views\AuctionManage\AddDeals.cshtml" />
+    <Content Include="Views\AuctionManage\NewDeal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="ViewModel\" />
-    <Folder Include="Views\AuctionManage\" />
+    <Folder Include="Views\DealManage\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
