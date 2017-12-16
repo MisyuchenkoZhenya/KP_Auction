@@ -84,7 +84,7 @@ namespace KP_Auction.Controllers
             }
         }
 
-        // GET: AuctionManage/Edit/5!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // GET: AuctionManage/Edit/5
         public ActionResult Start(int id)
         {
             DealRepository dealRepository = new DealRepository();
@@ -115,6 +115,14 @@ namespace KP_Auction.Controllers
             {
                 return View();
             }
+        }
+
+        [HttpPost]
+        public JsonResult GetItemInfo(int id)
+        {
+            ItemRepository itemRepository = new ItemRepository();
+            ItemModel item = itemRepository.GetById(id);
+            return Json(item, JsonRequestBehavior.AllowGet);
         }
 
         // GET: AuctionManage/Edit/5

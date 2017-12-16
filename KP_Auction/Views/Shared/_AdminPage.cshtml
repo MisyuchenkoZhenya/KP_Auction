@@ -9,6 +9,10 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+    @if (Session["Role"].ToString() != "Admin")
+    {
+        Response.Redirect("~/Home/Index");
+    }
     <div class="pagination btn-group">
         @Html.ActionLink("Auctions", "GetAll", "Auction", null, new { @class = "btn btn-primary" })
         @Html.ActionLink("Deals", "GetAll", "Deal", null, new { @class = "btn btn-primary" })
@@ -18,7 +22,7 @@
         @Html.ActionLink("Participants", "GetAll", "Participant", null, new { @class = "btn btn-primary" })
         @Html.ActionLink("TradingProgresses", "GetAll", "TradingProgress", null, new { @class = "btn btn-primary" })
     </div>
-        @Html.ActionLink("Exit", "Index", "Home", null, new { @class = "btn btn-primary", @id = "a-exit-btn" })
+        @Html.ActionLink("Exit", "Exit", "Home", null, new { @class = "btn btn-primary", @id = "a-exit-btn" })
     @RenderBody()
 
     @Scripts.Render("~/bundles/jquery")

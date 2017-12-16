@@ -9,13 +9,23 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+    @if (Session["Role"].ToString() != "User")
+    {
+        Response.Redirect("~/Home/Index");
+    }
     <p>
-        @Html.ActionLink("Exit", "Index", "Home", null, new { @class = "btn btn-primary", @id = "a-exit-btn" })
+        @Html.ActionLink("Exit", "Exit", "Home", null, new { @class = "btn btn-primary", @id = "a-exit-btn" })
     </p>
     @RenderBody()
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    @*<script>
+        $(window).load(() => {
+            refreshInfo();
+        })
+    </script>*@
 </body>
 </html>

@@ -171,6 +171,7 @@
     <Compile Include="Repositories\ParticipantRepository.cs" />
     <Compile Include="Repositories\SQLConnector.cs" />
     <Compile Include="Repositories\TradingProgressRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="ViewModel\StartViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -242,6 +243,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Authorize\" />
     <Folder Include="Views\DealManage\" />
   </ItemGroup>
   <ItemGroup>

@@ -11,6 +11,14 @@
             Item: @upperDeal.Item<br />
             Seller: @upperDeal.Seller<br />
         </div>
+        @Html.DropDownListFor(
+                    model => model.currentByuer,
+                    new SelectList(Model.participants, "Id", "FullName", Model.currentByuer),
+                    new { @class = "form-control" })
+
+        <div id="deal-info"></div>
+        <button onclick="refreshInfo(@(upperDeal.Item_Id))">Click</button>
+
     }
     else
     {
@@ -37,3 +45,13 @@
 }
 
 
+<script>
+    let info;
+    function refreshInfo(Id) {
+        info = $.post(`/AuctionManage/getItemInfo/${Id}`, { id: Id }, (data) => {
+            alert(data)
+        })
+        
+    }
+    
+</script>
