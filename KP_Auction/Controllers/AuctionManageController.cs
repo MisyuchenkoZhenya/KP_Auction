@@ -118,11 +118,12 @@ namespace KP_Auction.Controllers
         }
 
         [HttpPost]
-        public JsonResult GetItemInfo(int id)
+        public ActionResult GetItemInfo(int id)
         {
             ItemRepository itemRepository = new ItemRepository();
             ItemModel item = itemRepository.GetById(id);
-            return Json(item, JsonRequestBehavior.AllowGet);
+            
+            return Json(item, JsonRequestBehavior.DenyGet);
         }
 
         // GET: AuctionManage/Edit/5

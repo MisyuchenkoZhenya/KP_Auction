@@ -46,12 +46,23 @@
 
 
 <script>
-    let info;
     function refreshInfo(Id) {
-        info = $.post(`/AuctionManage/getItemInfo/${Id}`, { id: Id }, (data) => {
-            alert(data)
-        })
-        
+
+        $.ajax({
+            url: `/AuctionManage/getItemInfo/${Id}`,
+            type: 'POST',
+            data: JSON.stringify({ id: Id }),
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            error: function (xhr) {
+                alert('Error: ' + xhr.statusText);
+            },
+            success: function (result) {
+                $("#deal-info").text(result.Name);
+            },
+            async: true,
+            processData: false
+        });
     }
     
 </script>
