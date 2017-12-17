@@ -138,6 +138,7 @@ namespace KP_Auction.Repositories
                 return true;
             }
         }
+        
 
         public bool Delete(int Id)
         {
@@ -146,6 +147,22 @@ namespace KP_Auction.Repositories
                 db.Open();
 
                 SqlCommand com = new SqlCommand("DeleteDeal", db);
+                com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.AddWithValue("@Id", Id);
+
+                if (com.ExecuteNonQuery() == -1)
+                    return false;
+                return true;
+            }
+        }
+
+        public bool NoActive(int Id)
+        {
+            using (SqlConnection db = SQLConnector.Connect())
+            {
+                db.Open();
+
+                SqlCommand com = new SqlCommand("MakeDealNoActive", db);
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("@Id", Id);
 

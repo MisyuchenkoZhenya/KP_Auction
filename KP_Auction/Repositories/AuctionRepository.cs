@@ -120,5 +120,21 @@ namespace KP_Auction.Repositories
                 return true;
             }
         }
+
+        public bool End(int Id)
+        {
+            using (SqlConnection db = SQLConnector.Connect())
+            {
+                db.Open();
+
+                SqlCommand com = new SqlCommand("EndAuction", db);
+                com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.AddWithValue("@Id", Id);
+
+                if (com.ExecuteNonQuery() == -1)
+                    return false;
+                return true;
+            }
+        }
     }
 }

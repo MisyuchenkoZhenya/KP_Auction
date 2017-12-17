@@ -5,6 +5,11 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+/*
+ *  Available
+ *  Sold
+ *      */
+
 namespace KP_Auction.Models
 {
     public class ItemModel

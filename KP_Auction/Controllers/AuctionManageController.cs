@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using KP_Auction.Models;
 using KP_Auction.Repositories;
 using KP_Auction.ViewModel;
-
+using System.Globalization;
 
 namespace KP_Auction.Controllers
 {
@@ -89,27 +89,34 @@ namespace KP_Auction.Controllers
         {
             DealRepository dealRepository = new DealRepository();
             ParticipantRepository participantRepository = new ParticipantRepository();
+            ItemRepository itemRepository = new ItemRepository();
+            IEnumerable<DealModel> dealsForAuction = dealRepository.GetForAuction(id);
             StartViewModel startViewModel = new StartViewModel
             {
-                deals = dealRepository.GetForAuction(id),
+                deals = dealsForAuction,
                 participants = participantRepository.GetAll()
             };
             
             ModelState.Clear();
             ViewBag.AuctionId = id;
+            if(dealsForAuction.Count() > 0)
+            {
+                ItemModel firstDealItem = itemRepository.GetById(startViewModel.deals.ElementAt(0).Item_Id);
+
+                ViewBag.startPrice = firstDealItem.StartedPrice;
+                ViewBag.dealStep = firstDealItem.PriceGrowth;
+            }
 
             return View(startViewModel);
         }
 
         // POST: AuctionManage/Edit/5
         [HttpPost]
-        public ActionResult Start(int id, FormCollection collection)
+        public ActionResult Start()
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                return RedirectToAction("GetAuctions", "AuctionManage");
             }
             catch
             {
@@ -118,12 +125,38 @@ namespace KP_Auction.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetItemInfo(int id)
+        public ActionResult GetItemInfo(int dealId, int byuerId, int stepRate)
         {
-            ItemRepository itemRepository = new ItemRepository();
-            ItemModel item = itemRepository.GetById(id);
+            DateTime now = DateTime.Now;
+            TradingProgressRepository tradingProgressRepository = new TradingProgressRepository();
+            TradingProgressModel tradingProgress = new TradingProgressModel
+            {
+                Deal_Id = dealId,
+                Buyer_Id = byuerId,
+                StepTime = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, 0),
+                StepRate = stepRate
+            };
+            tradingProgressRepository.Add(tradingProgress);
             
-            return Json(item, JsonRequestBehavior.DenyGet);
+            return Json(new { }, JsonRequestBehavior.DenyGet);
+        }
+        
+
+        public ActionResult Next(int auctionId, int dealId)
+        {
+            try
+            {
+                AuctionRepository auctionRepository = new AuctionRepository();
+                auctionRepository.End(auctionId);
+                DealRepository dealRepository = new DealRepository();
+                dealRepository.NoActive(dealId);
+
+                return RedirectToAction("Start", "AuctionManage", new { id = auctionId });
+            }
+            catch
+            {
+                return RedirectToAction("Start", "AuctionManage", new { id = auctionId });
+            }
         }
 
         // GET: AuctionManage/Edit/5

@@ -4,6 +4,12 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
+/*
+ *  Is over
+ *  No active
+ *  Run
+ *      */
+
 namespace KP_Auction.Models
 {
     public class DealStateModel
