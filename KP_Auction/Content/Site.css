@@ -3,7 +3,7 @@
 }
 
 body {
-    background-color: #fafafd;
+    background-color: #FAFAFF;
     padding: 20px 1px 0 1px;
 }
 
@@ -42,7 +42,7 @@ h3 {
 }
 
 .table tr:nth-child(even) {
-    background-color: #EEEEF0;
+    background-color: #EAEAF0;
 }
 
 .auct-block {

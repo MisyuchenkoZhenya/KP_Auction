@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using KP_Auction.Models;
 using KP_Auction.Repositories;
 
@@ -21,12 +17,6 @@ namespace KP_Auction.Controllers
             AuctionRepository repository = new AuctionRepository();
             ModelState.Clear();
             return View(repository.GetAll());
-        }
-
-        // GET: Auction/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
         }
 
         // GET: Auction/Create
@@ -92,22 +82,6 @@ namespace KP_Auction.Controllers
                 repository.Delete(id);
 
                 return RedirectToAction("GetAll");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // POST: Auction/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
             }
             catch
             {

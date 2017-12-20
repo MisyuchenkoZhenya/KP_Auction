@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using KP_Auction.Models;
 using KP_Auction.Repositories;
 using KP_Auction.ViewModel;
-using System.Globalization;
 
 namespace KP_Auction.Controllers
 {
@@ -31,12 +29,6 @@ namespace KP_Auction.Controllers
             ModelState.Clear();
             ViewBag.AuctionId = id;
             return View(repository.GetForAuction(id));
-        }
-
-        // GET: AuctionManage/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
         }
 
         // GET: Deal/Create
@@ -156,50 +148,6 @@ namespace KP_Auction.Controllers
             catch
             {
                 return RedirectToAction("Start", "AuctionManage", new { id = auctionId });
-            }
-        }
-
-        // GET: AuctionManage/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: AuctionManage/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: AuctionManage/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: AuctionManage/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
             }
         }
     }
